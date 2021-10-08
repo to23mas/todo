@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="{$basePath}/css/style.css">
+
+	<title>{ifset title}{include title|stripHtml} | {/ifset}TODO</title>
+</head>
+
+<body>
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
+
+	{include content}
+
+
+
+	{block scripts}
+		<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+		<script src="{$basePath}/js/nette.ajax.js"></script>
+		<script src="{$basePath}/js/load.js"></script>
+		<script src="{$basePath}/js/css.js"></script>
+		<script src="https://kit.fontawesome.com/7188f521c4.js" crossorigin="anonymous"></script>
+	{/block}
+</body>
+</html>

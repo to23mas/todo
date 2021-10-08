@@ -1,0 +1,24 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+
+
+  {snippet loginScreen}
+  {* if login === true -> show <a> tag else show login form  *}
+
+    <div  n:if="$login" class="box">
+        <a n:href="showLogin!" class="ajax loginTag"><h1 class="height">Login ?</h1></a>
+    </div>
+
+    <div n:if="!$login" class="box">
+      {control loginForm}
+    </div>
+  {/snippet}
+
+
+
+
+
+
+
+

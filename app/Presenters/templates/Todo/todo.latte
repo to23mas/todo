@@ -1,0 +1,60 @@
+{block content}
+<div class="box2">
+
+  <div class="center">
+    {control todoForm}
+  </div>
+
+</div>
+
+<div class="center2">
+
+{snippet todoSection}
+  <div class="container">
+
+    <div class="high title">
+      <strong>HIGH priority todos..</strong>
+    </div>
+
+    {varType App\Model\Database\Entity\NetrineTodo $h}
+      {foreach  $high as $h}
+        {include task, c => 'high', 'h' => $h}
+      {/foreach}
+
+  </div>
+
+
+  <div class="container">
+      <div class="medium title">
+        <strong>MEDIUM priority todos..</strong>
+      </div>
+      {foreach  $medium as $h}
+        {include task, c => 'medium', 'h' => $h}
+      {/foreach}
+  </div>
+
+    <div class="container">
+      <div class="low title">
+        <strong>LOW priority todos..</strong>
+      </div>
+      {foreach  $low as $h}
+        {include task, c => 'low', 'h' => $h}
+      {/foreach}
+      </div>
+
+{/snippet}
+
+      {define task}
+      {if $h->isComplete() == 0}
+      <div class="{$c}">
+        {else}
+        <div class="complete">
+          {/if}
+          {$h->getTask()}
+          <div class="right">
+            <a n:href="del! $h->getId()" class="ajax fas fa-trash"></a>
+            <a n:href="check! $h->getId(), $h->isComplete()" class="ajax fas fa-check-square"></a>
+          </div>
+        </div>
+      {/define}
+

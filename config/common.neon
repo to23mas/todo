@@ -1,0 +1,77 @@
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+di:
+	export:
+		parameters: no
+		tags: no
+
+security:
+	users:
+		tomas: Warranty
+
+services:
+	- App\Router\RouterFactory::createRouter
+	- App\Model\Todo
+	- App\Model\TodoCollection
+
+# TODO -----------------------------Extensions----------------------------------
+extensions:
+    console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+    # Common
+    nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
+    nettrine.cache: Nettrine\Cache\DI\CacheExtension
+    nettrine.migrations: Nettrine\Migrations\DI\MigrationsExtension
+#    nettrine.fixtures: Nettrine\Fixtures\DI\FixturesExtension
+
+    # DBAL
+    nettrine.dbal: Nettrine\DBAL\DI\DbalExtension
+    nettrine.dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+
+    # ORM
+    nettrine.orm: Nettrine\ORM\DI\OrmExtension
+    nettrine.orm.cache: Nettrine\ORM\DI\OrmCacheExtension
+    nettrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+    nettrine.orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
+
+# TODO -----------------------------dbal_setting----------------------------------
+nettrine.dbal:
+    debug:
+        panel: %debugMode%
+        sourcePaths: [%appDir%]
+    connection:
+        host: localhost
+        driver: mysqli
+        dbname: todo
+        user: phpmyadmin
+        password: warranty
+
+# TODO ----------------------console setting for migration-----------------------------
+nettrine.migrations:
+  directory: App/migrations
+
+# TODO ----------------------console setting-----------------------------
+console:
+    name: Todo project
+    version: '1.0'
+    catchExceptions: true
+    autoExit: false
+    url: 127.0.0.1
+    lazy: false
+
+#nettrine.annotations:
+#  debug: %debugMode%
+#  ignore: [author, since, see]
+#  cache: Doctrine\Common\Cache\PhpFileCache(%tempDir%/cache/doctrine)
+includes:
+    - database.neon

@@ -1,0 +1,12 @@
+
+nettrine.migrations:
+    directory: %appDir%/migrations
+
+parameters:
+    applicationPath: %appDir%/Model/Database
+
+nettrine.orm.annotations:
+    mapping:
+        App\Model\Database\Entity: %appDir%/Model/Database/Entity
+
+#    debug: %debugMode%
